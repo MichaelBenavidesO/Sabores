@@ -1,0 +1,73 @@
+<form [formGroup]="addressForm" novalidate (ngSubmit)="onSubmit()">
+  <mat-card class="shipping-card">
+    <mat-card-header>
+      <mat-card-title>Actualizar información</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+
+    <div class="col" style="padding:20px">
+      <div class="row">
+        <img [src]=ruta alt="Avatar" style="padding: 10px;">
+      </div>
+      <div class="row">
+        <button type="button" mat-raised-button (click)="fileInput.click()">Choose File</button>
+        <input hidden (change)="onFileSelected($event)" #fileInput type="file" id="file">
+      </div>
+
+    </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Nombres" formControlName="nombres">
+            <mat-error *ngIf="addressForm.controls['nombres'].hasError('required')">
+              Los nombres son <strong>obligatorios.</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Apellidos" formControlName="apellidos">
+            <mat-error *ngIf="addressForm.controls['apellidos'].hasError('required')">
+              Los apellidos son <strong>obligatorios.</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Identificacion" formControlName="identificacion">
+            <mat-error *ngIf="addressForm.controls['identificacion'].hasError('required')">
+              La identificación es <strong>obligatoria.</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput type="email" placeholder="Correo electronico" formControlName="email">
+            <mat-error *ngIf="addressForm.controls['email'].hasError('required')">
+              El correo electronico es <strong>obligatorio.</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput type="password" placeholder="Contraseña" formControlName="password" >
+
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput type="passwordr" placeholder="Confirmación contraseña" formControlName="passwordr" >
+
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button style="color: #af2c22;" type="submit">Actualizar</button>
+    </mat-card-actions>
+  </mat-card>
+</form>

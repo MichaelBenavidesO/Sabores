@@ -1,0 +1,36 @@
+.full-width {
+  width: 100%;
+}
+
+.shipping-card {
+  min-width: auto;
+  margin: 20px auto;
+}
+.mat-dialog-title{
+  justify-content: space-between;
+}
+
+.mat-radio-button {
+  display: block;
+  margin: 5px 0;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.col {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.col:last-child {
+  margin-right: 0;
+}
+
+.flex-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}

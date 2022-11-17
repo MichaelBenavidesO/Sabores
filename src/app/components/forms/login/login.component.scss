@@ -1,0 +1,29 @@
+.full-width {
+  width: 100%;
+}
+
+.shipping-card {
+  min-width: 120px;
+  padding-top: 50px;
+}
+
+.mat-card-actions{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  align-content: space-between;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.col {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.col:last-child {
+  margin-right: 0;
+}

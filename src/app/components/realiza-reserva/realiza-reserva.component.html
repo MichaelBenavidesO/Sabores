@@ -1,0 +1,79 @@
+<form [formGroup]="addressForm" novalidate (ngSubmit)="onSubmit()">
+  <mat-card class="shipping-card">
+    <mat-card-header>
+      <mat-card-title>Realizar reserva</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input  matInput placeholder="Identificacion" formControlName="identificacion" readonly="" [ngModel]=identificacion>
+
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Cantidad de personas" formControlName="cantidad" >
+            <mat-error *ngIf="addressForm.controls['cantidad'].hasError('required')">
+              La cantidad de personas es <strong>obligatoria.</strong>
+             </mat-error>
+             <mat-error *ngIf="addressForm.controls['cantidad'].hasError('min') || addressForm.controls['cantidad'].hasError('max') ">
+               La cantidad permitida es de<strong> 1 a 8 personas</strong>
+              </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-select placeholder="Motivo" formControlName="motivo">
+              <mat-option *ngFor="let motivo of motivos" [value]="motivo.name">
+                {{ motivo.name }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="addressForm.controls['motivo'].hasError('required')">
+              El motivo es <strong>obligatorio.</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-select placeholder="Sede" formControlName="sede">
+              <mat-option *ngFor="let sede of sedes" [value]="sede[0].idSede">
+                {{ sede[0].nombreSede +' - ' +sede[0].direccion }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="addressForm.controls['sede'].hasError('required')">
+              La sede es <strong>obligatoria.</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Fecha" type="date" formControlName="fecha">
+            <mat-error *ngIf="addressForm.controls['fecha'].hasError('required')">
+             La fecha es <strong>obligatoria.</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Hora" type="time" formControlName="hora">
+            <mat-error *ngIf="addressForm.controls['hora'].hasError('required')">
+             La hora es <strong>obligatoria.</strong>
+            </mat-error>
+            <mat-error *ngIf="addressForm.controls['hora'].hasError('min') || addressForm.controls['hora'].hasError('max') ">
+              El horario permitido es de <strong>12 p.m. a 6 p.m.</strong>
+             </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button style="color: #af2c22;" type="submit" [disabled]="!addressForm.valid">Realizar reserva</button>
+      <button mat-raised-button style="color: #af2c22;" type="button" [disabled]="!addressForm.valid">Realizar reserva con platos</button>
+    </mat-card-actions>
+  </mat-card>
+</form>

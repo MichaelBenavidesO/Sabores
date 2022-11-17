@@ -1,0 +1,44 @@
+<div class="container-fluid">
+
+  <mat-form-field appearance="standard">
+    <mat-label>Filtro</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="¿Por que?" #input>
+
+  </mat-form-field>
+  <div class="demo-button-container" style="float: right;padding: 1%;">
+    <button mat-raised-button (click)="realizarPregunta()" class="demo-button">
+      Realizar pregunta
+    </button>
+  </div>
+  <div class="mat-elevation-z8">
+
+    <table mat-table [dataSource]="dataSource" matSort>
+      <div matColumnDef="{{disCol}}" *ngFor="let disCol of displayedColumns">
+        <div *ngIf="disCol!='Acciones'">
+          <th mat-header-cell *matHeaderCellDef style="color:#af2c22;">{{disCol.toUpperCase()}}</th>
+          <td mat-cell *matCellDef="let element">{{element[disCol]}}</td>
+        </div>
+        <div *ngIf="disCol=='Acciones'">
+          <th mat-header-cell *matHeaderCellDef style="color:#af2c22;">{{disCol.toUpperCase()}}</th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-button [matMenuTriggerFor]="menu" #menuTrigger><mat-icon style="color:#af2c22;">editar</mat-icon></button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item (click)="openDialogEdit(element)">Editar</button>
+              <button mat-menu-item (click)="eliminar(element)">Eliminar</button>
+            </mat-menu>
+          </td>
+        </div>
+      </div>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      <!-- Row shown when there is no matching data. -->
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">No se encontraron preguntas - "{{input.value}}"</td>
+      </tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+  </div>
+</div>

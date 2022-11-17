@@ -1,0 +1,42 @@
+<form [formGroup]="addressForm" novalidate (ngSubmit)="onSubmit()">
+  <mat-card class="shipping-card">
+    <mat-card-header>
+    
+    </mat-card-header>
+    <mat-card-content>
+
+      <div class="col">
+        <div class="row">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Correo electronico" formControlName="email">
+            <mat-error *ngIf="addressForm.controls['email'].hasError('required')">
+              El correo electronico es <strong>obligatorio.</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="row">
+          <mat-form-field class="full-width">
+            <mat-label>Contraseña</mat-label>
+              <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+            <mat-error *ngIf="addressForm.controls['password'].hasError('required')">
+              La contraseña es <strong>obligatoria.</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+     <button mat-raised-button style="color: #af2c22;" type="submit">Iniciar sesion
+      </button>
+      <button mat-raised-button (click)="modal()" type="button" style="color: #af2c22;">Registrarse</button>
+    </mat-card-actions>
+  
+  </mat-card>
+</form>
+
+
+
+

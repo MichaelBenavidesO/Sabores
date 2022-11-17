@@ -1,0 +1,25 @@
+<div class="flex-container">
+  <h1 mat-dialog-title style="color: #af2c22; vertical-align: middle;">{{accion}} {{titulo}} </h1>
+<button mat-icon-button color="accent" mat-dialog-close style="color: #af2c22;"><mat-icon>close</mat-icon>
+</button>
+</div>
+
+<div mat-dialog-content>
+<div *ngIf="accion=='Iniciar sesion'">
+<app-login></app-login>
+</div>
+<div *ngIf="accion=='Registrar'">
+<app-register></app-register>
+</div>
+<div *ngIf="(accion=='Agregar' || accion=='Editar') && titulo=='producto'">
+  <app-agrega-producto></app-agrega-producto>
+</div>
+<div *ngIf="(accion=='Agregar' || accion=='Editar') && titulo=='pregunta'">
+  <app-realiza-pregunta></app-realiza-pregunta>
+</div>
+
+<!--<div *ngIf="accion=='Editar'">
+  <app-editar-producto></app-editar-producto>
+</div>-->
+
+</div>

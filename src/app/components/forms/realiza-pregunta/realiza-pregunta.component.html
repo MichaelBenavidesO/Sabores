@@ -1,0 +1,33 @@
+<form [formGroup]="addressForm" novalidate (ngSubmit)="onSubmit()">
+  <mat-card class="shipping-card">
+    <mat-card-content>
+
+      <div class="col">
+        
+        <div class="row">
+          <mat-form-field class="full-width">
+            <textarea matInput placeholder="Pregunta" formControlName="pregunta" rows="5"></textarea>
+            <mat-error *ngIf="addressForm.controls['pregunta'].hasError('required')">
+              La pregunta a realizar es <strong>obligatoria.</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      <div class="row" *ngIf="accion=='Editar'">
+          <mat-form-field class="full-width">
+            <textarea matInput placeholder="Respuesta" formControlName="respuesta" rows="5"></textarea>
+            
+          </mat-form-field>
+        </div>
+      
+      
+      </div>
+      
+
+    </mat-card-content>
+    <mat-card-actions>
+   <button mat-raised-button style="color: #af2c22;" type="submit" [disabled]="!addressForm.valid">{{title}} pregunta</button>
+    </mat-card-actions>
+
+  </mat-card>
+</form>
+

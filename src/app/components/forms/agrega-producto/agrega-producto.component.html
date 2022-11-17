@@ -1,0 +1,46 @@
+<form [formGroup]="addressForm" novalidate (ngSubmit)="onSubmit()">
+  <mat-card class="shipping-card">
+    <mat-card-header>
+      <mat-card-title></mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Nombre" formControlName="nombre">
+            <mat-error *ngIf="addressForm.controls['nombre'].hasError('required')">
+              El nombre es <strong>obligatorio.</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <textarea matInput placeholder="Descripcion" rows="3" formControlName="descripcion"></textarea>
+            <mat-error *ngIf="addressForm.controls['descripcion'].hasError('required')">
+              La descripción es <strong>obligatoria.</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input type="float" matInput placeholder="Precio" formControlName="precio">
+            <mat-error *ngIf="addressForm.controls['precio'].hasError('required')">
+              El precio es <strong>obligatorio.</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row" style="padding-top:10%">
+        <button type="button" mat-raised-button (click)="fileInput.click()" style="color: #af2c22;">Seleccionar imagen del producto</button>
+        <input hidden (change)="onFileSelected()" #fileInput type="file" id="file">
+      </div>
+    </mat-card-content>
+    <mat-card-actions style="text-align: center; padding:10% ; padding-top:15%">
+      <button mat-raised-button style="color: #af2c22;" type="submit" [disabled]="!addressForm.valid">{{title}} producto</button>
+    </mat-card-actions>
+  </mat-card>
+</form>
